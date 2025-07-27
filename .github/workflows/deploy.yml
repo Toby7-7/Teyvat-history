@@ -1,4 +1,4 @@
-name: Build and Deploy to Cloudflare Pages
+name: Build Site
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     
     steps:
@@ -32,12 +32,13 @@ jobs:
         name: build-files
         path: dist/
         
-    - name: Deploy to Cloudflare Pages
-      if: github.ref == 'refs/heads/main' && secrets.CLOUDFLARE_API_TOKEN != ''
-      uses: cloudflare/pages-action@v1
-      with:
-        apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        projectName: teyvat-history
-        directory: dist
-        gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+    # Cloudflare Pages deployment (configure secrets to enable)
+    # - name: Deploy to Cloudflare Pages  
+    #   if: github.ref == 'refs/heads/main'
+    #   uses: cloudflare/pages-action@v1
+    #   with:
+    #     apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    #     accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    #     projectName: teyvat-history
+    #     directory: dist
+    #     gitHubToken: ${{ secrets.GITHUB_TOKEN }}
