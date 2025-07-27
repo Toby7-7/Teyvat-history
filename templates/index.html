@@ -70,6 +70,19 @@
             background-color: #eaddcf;
             color: #8c785d;
         }
+        .details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out;
+        }
+        .details.open {
+            max-height: 3000px;
+        }
+        .nav-link.active {
+            color: #a1887f;
+            font-weight: 700;
+            border-bottom: 2px solid #a1887f;
+        }
         .character-tag {
             display: inline-block;
             background-color: #f0e6d2;
@@ -122,9 +135,20 @@
             <div class="flex items-center justify-between h-16">
                 <h1 class="text-xl font-bold text-gray-700">提瓦特详细历史</h1>
                 <div class="hidden md:flex space-x-6 text-gray-500">
-                    <a href="#timeline" class="nav-link px-2 py-1 transition">历史时间线</a>
-                    <a href="#characters" class="nav-link px-2 py-1 transition">重要人物</a>
-                    <a href="#events" class="nav-link px-2 py-1 transition">重大事件</a>
+                    <a href="#era-1" class="nav-link px-2 py-1 transition">龙之纪元</a>
+                    <a href="#era-2" class="nav-link px-2 py-1 transition">原初时代</a>
+                    <a href="#era-3" class="nav-link px-2 py-1 transition">葬火纪元</a>
+                    <a href="#era-4" class="nav-link px-2 py-1 transition">魔神时代</a>
+                    <a href="#era-5" class="nav-link px-2 py-1 transition">七神时代</a>
+                </div>
+                <div class="md:hidden">
+                    <select id="mobile-nav" class="bg-white border border-gray-300 rounded-md p-2">
+                        <option value="#era-1">龙之纪元</option>
+                        <option value="#era-2">原初时代</option>
+                        <option value="#era-3">葬火纪元</option>
+                        <option value="#era-4">魔神时代</option>
+                        <option value="#era-5">七神时代</option>
+                    </select>
                 </div>
             </div>
         </nav>
@@ -137,19 +161,7 @@
         </div>
 
         <div class="relative timeline-container">
-            <section id="timeline">
-                {{TIMELINE_CONTENT}}
-            </section>
-            
-            <section id="characters" class="mt-16">
-                <h2 class="text-3xl font-bold text-center mb-8">重要人物</h2>
-                {{CHARACTERS_CONTENT}}
-            </section>
-            
-            <section id="events" class="mt-16">
-                <h2 class="text-3xl font-bold text-center mb-8">重大事件</h2>
-                {{EVENTS_CONTENT}}
-            </section>
+            {{TIMELINE_CONTENT}}
         </div>
     </main>
 
@@ -157,7 +169,49 @@
         <div class="container mx-auto px-4 text-center text-gray-600">
             <p>提瓦特历史资料整理 | 基于原神游戏内容</p>
             <p class="mt-2 text-sm">本站内容由社区协作维护，欢迎贡献和修正</p>
+            <div class="mt-4 text-sm">
+                <p class="font-semibold mb-2">内容贡献来源：</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="https://space.bilibili.com/173323339" target="_blank" class="text-blue-600 hover:text-blue-800">天空岛的愚者</a>
+                    <a href="https://space.bilibili.com/519297" target="_blank" class="text-blue-600 hover:text-blue-800">星月银</a>
+                </div>
+            </div>
         </div>
     </footer>
+
+    <script>
+        function toggleDetails(element) {
+            const details = element.querySelector('.details');
+            if (details) {
+                details.classList.toggle('open');
+            }
+        }
+
+        // Mobile navigation
+        document.getElementById('mobile-nav')?.addEventListener('change', function() {
+            const target = this.value;
+            if (target) {
+                document.querySelector(target)?.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // Active navigation
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('.era-section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            sections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 100) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    if (navLinks[index]) {
+                        navLinks[index].classList.add('active');
+                    }
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+    </script>
 </body>
 </html>

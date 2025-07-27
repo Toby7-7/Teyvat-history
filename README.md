@@ -89,6 +89,13 @@ npm run dev
 - **样式**: Tailwind CSS
 - **部署**: GitHub Actions + Cloudflare Pages
 
+## 内容贡献来源
+
+感谢以下UP主提供的优质原神世界观内容：
+
+- **天空岛的愚者** - [B站主页](https://space.bilibili.com/173323339)
+- **星月银** - [B站主页](https://space.bilibili.com/519297)
+
 ## 许可证
 
 本项目采用MIT许可证，内容基于原神游戏资料整理。
