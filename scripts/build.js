@@ -38,6 +38,10 @@ async function readMarkdownFile(filePath) {
     try {
         if (await fs.pathExists(filePath)) {
             const content = await fs.readFile(filePath, 'utf8');
+            // 如果内容已经包含HTML标签，直接返回，否则使用Markdown解析
+            if (content.includes('<section') || content.includes('<div')) {
+                return content;
+            }
             return marked(content);
         }
         return '';
