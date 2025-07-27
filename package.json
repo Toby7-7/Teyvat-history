@@ -16,7 +16,7 @@
     "history",
     "timeline"
   ],
-  "author": "Your Name",
+  "author": "Toby",
   "license": "MIT",
   "dependencies": {
     "jsdom": "^26.1.0"
