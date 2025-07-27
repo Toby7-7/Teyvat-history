@@ -77,6 +77,10 @@ npm run dev
 3. 对于有争议的内容，请在Pull Request中说明
 4. 遵循现有的格式和风格
 
+## 网站访问
+
+🌐 **在线访问**: [teyvat-history.151144.xyz](https://teyvat-history.151144.xyz)
+
 ## 技术栈
 
 - **构建工具**: Node.js + 自定义构建脚本
