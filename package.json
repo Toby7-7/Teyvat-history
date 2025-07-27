@@ -8,10 +8,17 @@
     "dev": "node scripts/build.js && python3 -m http.server 8000"
   },
   "devDependencies": {
-    "marked": "^12.0.0",
-    "fs-extra": "^11.2.0"
+    "fs-extra": "^11.2.0",
+    "marked": "^12.0.0"
   },
-  "keywords": ["genshin", "history", "timeline"],
+  "keywords": [
+    "genshin",
+    "history",
+    "timeline"
+  ],
   "author": "Your Name",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "jsdom": "^26.1.0"
+  }
 }
